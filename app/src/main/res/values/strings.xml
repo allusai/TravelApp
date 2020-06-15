@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Travel App</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="search_box_hint">Search for a city</string>
+    <string name="search_text_default_value">Paris</string>
+    <string name="search_button">Go</string>
+    <string-array name="cities">
+        <item>Paris</item>
+        <item>London</item>
+        <item>Hyderabad</item>
+        <item>San Francisco</item>
+        <item>New York City</item>
+    </string-array>
+</resources>
