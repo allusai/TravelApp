@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -98,6 +99,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
     }
+
+    /* Alarm: Called when alarm is pressed */
+    public void showTimePickerDialog(View alarm)
+    {
+        Toast.makeText(getApplicationContext(), "Alarm", Toast.LENGTH_SHORT).show();
+    }
+
 }
 
 /*

@@ -1,0 +1,54 @@
+Alright, so based on how we want our view page to look, I thought that "multiple view holder"
+is the key but it's not! That's when you want a list view but have different types of holders
+like one for phone contacts and one for email contacts.
+
+We want *just a ViewHolder*, it by itself can hold different view objects if we try. So the Medium
+article was really unnecessary.
+
+Unresolved challenges at this point:
+How can I make a ViewHolder that holds two things (a TextView for the restaurant name and an
+ImageButton for the alarm picture and that's all)
+Where do I implement the alarm's onClick function, which file
+How can I add a favorite button for toggling (see short Youtube tutorial)
+How can I make a ViewHolder that holds three things
+How do I enable list item selection (it's shown on the original Android tutorial)
+
+
+ViewHolder with two things
+--------------------------
+restaurantName and alarmButton
+
+ - We defined in one_location.xml what the UI design should look like with restaurant name
+    and alarm button
+ - Now in our Adapter, we must inflate the XML markup and turn it into code-usable data structures like
+    "TextView restaurantName" and "ImageButton alarmButton" which Android can use in the code
+
+ViewHolder container Constructor
+ - For that, we define the variables in a "ViewHolder", it's like a bucket in which you can put as
+    many individual View objects as you want. Next, we define a constructor which takes in a
+    generic View object. In that View object you can use findById to get the two corresponding
+    XML ids for each UI element and then set your Java object to that (casted). That generic View
+    object seems to be a LinearLayout (top-level container), but I could be wrong.
+
+LocationAdapter Constructor / Dataset Loader
+    - Just sets mDataset to whatever is passed in for my Dataset
+
+onCreateViewHolder
+    - I added code to inflate one_location.xml
+
+
+TO Do:
+1) Try the if(location == "Paris") return null to see if the spinner really
+influences the dataset and adapter > QueryMaker.java should have three different possible outputs, spinner binding already set
+2) Figure out where the alarm button went off to, does it show up in one_location.xml > Yes, use component navigator pane!
+3) Make those work together, then add the favorite and "Category" as a vertical linear layout
+
+onClick function in one_location.xml has to be implemented in the *Activity* where the XML
+element will show up. In this case it is MainActivity.java.
+The signature is " public void showTimePickerDialog(View alarm)"
+which matched with "public void <function>(View v)"
+Note that the parameter is just "View v" and not "ImageButton v"
+
+1) Add the Vertical linear layout, Medium article can help
+2) Move the code over to the Home fragment
+3) Make the alarm functional, initialize default value in Adapter itself

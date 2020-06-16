@@ -10,9 +10,8 @@ public class TouristLocation
     private String photoLinkStr;
 
     private int startHr, startMin;
-    private int endHr, endMin;
 
-    public TouristLocation(String n, String c, String w, String d, String c2, boolean s, double r, String pls, int s1, int s2, int e1, int e2)
+    public TouristLocation(String n, String c, String w, String d, String c2, boolean s, double r, String pls, int s1, int s2)
     {
         name = n;
         category = c;
@@ -24,8 +23,6 @@ public class TouristLocation
         photoLinkStr = pls;
         startHr = 0;
         startMin = 0;
-        endHr = 0;
-        endMin = 0;
     }
 
 
@@ -81,19 +78,4 @@ public class TouristLocation
         this.startMin = startMin;
     }
 
-    public int getEndHr() {
-        return endHr;
-    }
-
-    public void setEndHr(int endHr) {
-        this.endHr = endHr;
-    }
-
-    public int getEndMin() {
-        return endMin;
-    }
-
-    public void setEndMin(int endMin) {
-        this.endMin = endMin;
-    }
 }

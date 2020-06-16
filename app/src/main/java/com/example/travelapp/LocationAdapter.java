@@ -1,11 +1,10 @@
 package com.example.travelapp;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,12 +16,16 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {  // 1 (my custom holder)
         // each data item is just a string in this case
-        public ToggleButton star;
-        public TextView textView;   // just has one Text View called 'textView'
-        public ImageButton alarmClock;
-        public MyViewHolder(ToggleButton s, TextView v, Button a) {
-            super(s, v, a);
-            textView = v;
+
+        public TextView category; //jumble of views in this ViewHolder
+        public TextView restaurantName;
+        public ImageButton alarmButton;
+
+        public MyViewHolder(View itemXML) {
+            super(itemXML);
+            category = (TextView) itemXML.findViewById(R.id.category);
+            restaurantName = (TextView) itemXML.findViewById(R.id.restaurantName);
+            alarmButton = (ImageButton) itemXML.findViewById(R.id.alarmButton);
         }
     }
 
@@ -36,10 +39,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     public LocationAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
         // create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_text_view, parent, false);
-        ...
-        MyViewHolder vh = new MyViewHolder(v);  // 2 (construct a blank holder container, no info)
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.one_location, parent, false); //inflate XML file
+        //...
+        MyViewHolder vh = new MyViewHolder(v); //Use it to build a ViewHolder container with the constructor above
         return vh;
     }
 
@@ -48,8 +51,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) { // bind data to a holder
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(mDataset[position]);  // 3 (let 'textView' = some string)
-
+        holder.category.setText(mDataset[position].getCategory());
+        holder.restaurantName.setText(mDataset[position].getName());  // 3 (let 'textView' = some string)
+        //set alarm's picker default value for view here
     }
 
     // Return the size of your dataset (invoked by the layout manager)

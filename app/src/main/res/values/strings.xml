@@ -6,6 +6,7 @@
     <string name="search_box_hint">Search for a city</string>
     <string name="search_text_default_value">Paris</string>
     <string name="search_button">Go</string>
+    <string name="alarmContentDescription">This is an alarm button which launches a picker</string>
     <string-array name="cities">
         <item>Paris</item>
         <item>London</item>
