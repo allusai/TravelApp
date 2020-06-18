@@ -42,9 +42,13 @@
     </LinearLayout>
 
     <ToggleButton
+        android:id="@+id/favoriteButton"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:onClick="toggleFavorite"/>
+        android:textOn=""
+        android:textOff=""
+        android:background="@drawable/star_selector"
+        />
 
     <ImageButton
         android:id="@+id/alarmButton"

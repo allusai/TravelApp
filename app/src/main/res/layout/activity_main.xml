@@ -62,10 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
@@ -75,10 +76,21 @@
         android:layout_height="432dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:scrollbars="vertical"
         app:layout_constraintStart_toStartOf="@+id/nav_host_fragment"
         app:layout_constraintTop_toBottomOf="@+id/locations_spinner" />
+
+    <Button
+        android:id="@+id/schedule_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/schedule_button_text"
+        android:onClick="openSchedule"
+        app:layout_constraintBottom_toTopOf="@+id/locations_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

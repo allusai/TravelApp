@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TouristLocation[] myDataset = q.search("Paris");
 
         // specify an adapter (see also next example)  2
-        mAdapter = new LocationAdapter(myDataset);
+        mAdapter = new LocationAdapter(myDataset, q);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TouristLocation[] newDataset = q.search(newSelectedLocation);
 
         // specify an adapter (see also next example)
-        mAdapter = new LocationAdapter(newDataset);
+        mAdapter = new LocationAdapter(newDataset, q);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -104,10 +105,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /*Favorite: Called when favorite button is toggled */
-    public void toggleFavorite(View favorite)
+    /*public void toggleFavorite(View favorite)
     {
-        Toast.makeText(getApplicationContext(), "Favorite", Toast.LENGTH_SHORT).show();
-    }
+        // ToggleButton state is clicked and this function is called
+        ToggleButton toggleBtn = findViewById(R.id.favoriteButton);
+
+        if(toggleBtn.isChecked()) {
+            Toast.makeText(getApplicationContext(), "Favorite", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Unfavorite", Toast.LENGTH_SHORT).show();
+        }
+    } */
 
     /* Alarm: Called when alarm is pressed */
     public void showTimePickerDialog(View alarm)
@@ -115,6 +124,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(getApplicationContext(), "Alarm", Toast.LENGTH_SHORT).show();
     }
 
+    /* Open Your Schedule: called when that activity button is pressed*/
+    public void openSchedule(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, ViewScheduleActivity.class); //DisplayMessageActivity is the new page we will be opening
+        EditText editText = (EditText) findViewById(R.id.editText); //The search box's id is 'editText', check it out
+        String message = editText.getText().toString(); //Get the current text in the search box
+        intent.putExtra(EXTRA_MESSAGE, message); //Forwards the text to the next activity via the intent's "extras" array, def. data type above
+        startActivity(intent); //Launch the next activity!
+    }
 }
 
 /*

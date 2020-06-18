@@ -1,18 +1,25 @@
 package com.example.travelapp;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+//To Fix: When the views are created, their 'selected' value must be fetched out of the
+//database, likewise with the alarm values for the 2nd activity.
+//selected=true but the star isn't filled in (we want to put isChecked=true)
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyViewHolder> {
     private TouristLocation[] mDataset;
+    private QueryMaker qhelper;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -23,6 +30,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
         public ImageView photo; //jumble of views in this ViewHolder
         public TextView category;
         public TextView restaurantName;
+        public ToggleButton favoriteButton;
         public ImageButton alarmButton;
 
         public MyViewHolder(View itemXML) {
@@ -30,13 +38,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
             photo = (ImageView) itemXML.findViewById(R.id.photo);
             category = (TextView) itemXML.findViewById(R.id.category);
             restaurantName = (TextView) itemXML.findViewById(R.id.restaurantName);
+            favoriteButton = (ToggleButton) itemXML.findViewById(R.id.favoriteButton);
             alarmButton = (ImageButton) itemXML.findViewById(R.id.alarmButton);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public LocationAdapter(TouristLocation[] myDataset) {
+    public LocationAdapter(TouristLocation[] myDataset, QueryMaker q) {
         mDataset = myDataset;
+        qhelper = q;
     }
 
     // Create new views (invoked by the layout manager)
@@ -65,6 +75,32 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
         Picasso.with(holder.photo.getContext()).load(url).placeholder(R.drawable.ic_baseline_place_24).into(holder.photo);
         holder.category.setText(mDataset[position].getCategory());
         holder.restaurantName.setText(mDataset[position].getName());  // 3 (let 'textView' = some string)
+
+        //Fetch the value of star/selected out of the database!
+        holder.favoriteButton.setChecked(qhelper.getSelectedStatus(position));
+
+        //Set a 'favorite button listener'
+        final Context context = holder.photo.getContext();
+        final int pos = position;
+        holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Gotta do this to make favorite button work!
+               // boolean old_state = qhelper.getSelectedStatus(pos);
+                qhelper.toggleSelected(pos);
+               // boolean new_state = qhelper.getSelectedStatus(pos);
+               /*
+                     if(!old_state) {
+                    Toast.makeText(context, "Favorite from " + pos, Toast.LENGTH_SHORT).show();
+                    qhelper.printMyData();
+                     }
+                     else {
+                    Toast.makeText(context, "Unfavorite from " + pos, Toast.LENGTH_SHORT).show();
+                     }
+               */
+            }
+        });
+
         //set alarm's picker default value for view here
     }
 

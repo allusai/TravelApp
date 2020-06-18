@@ -107,4 +107,19 @@ public class QueryMaker {
 
         return new TouristLocation[]{test, sample}; */
     }
+
+    public boolean getSelectedStatus(int pos) {
+        return placesList[pos].isSelected();
+    }
+
+    public void toggleSelected(int pos) {
+        if(placesList[pos].isSelected())
+        {
+            placesList[pos].setSelected(false);
+        }
+        else
+        {
+            placesList[pos].setSelected(true);
+        }
+    }
 }
