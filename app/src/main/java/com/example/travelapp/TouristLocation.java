@@ -11,6 +11,11 @@ public class TouristLocation
 
     private int startHr, startMin;
 
+    public TouristLocation()
+    {
+
+    }
+
     public TouristLocation(String n, String c, String w, String d, String c2, boolean s, double r, String pls, int s1, int s2)
     {
         name = n;
@@ -92,6 +97,44 @@ public class TouristLocation
                 ", startHr=" + startHr +
                 ", startMin=" + startMin +
                 '}';
+    }
+
+    public void checkEncoding()
+    {
+        System.out.println("CHECK ENCODING");
+        System.out.println(encodeToString());
+    }
+
+    public String encodeToString()
+    {
+        String result = "";
+        result += (name + "," + category + "," + websiteLink + "," + description + "," + country);
+        result += ("," + Boolean.toString(selected));
+        result += ("," + Double.toString(rating));
+        result += ("," + photoLinkStr);
+        result += ("," + Integer.toString(startHr));
+        result += ("," + Integer.toString(startMin));
+
+        return result;
+    }
+
+    public boolean decodeFromString(String encodedString)
+    {
+        String[] tokens = encodedString.split(",");
+
+        //Make a TouristLocation object with the right casting
+        name = tokens[0];
+        category = tokens[1];
+        websiteLink = tokens[2];
+        description = tokens[3];
+        country = tokens[4];
+        selected = Boolean.parseBoolean(tokens[5]);
+        rating = Double.parseDouble(tokens[6]);
+        photoLinkStr = tokens[7];
+        startHr = Integer.parseInt(tokens[8]);
+        startMin = Integer.parseInt(tokens[9]);
+
+        return true;
     }
 
 }

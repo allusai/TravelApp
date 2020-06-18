@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Do something in response to button
         Intent intent = new Intent(this, ViewScheduleActivity.class); //DisplayMessageActivity is the new page we will be opening
         EditText editText = (EditText) findViewById(R.id.editText); //The search box's id is 'editText', check it out
-        String message = editText.getText().toString(); //Get the current text in the search box
+        String message = q.turnDataIntoSerializedString(); //Get the current text in the search box
         intent.putExtra(EXTRA_MESSAGE, message); //Forwards the text to the next activity via the intent's "extras" array, def. data type above
         startActivity(intent); //Launch the next activity!
     }

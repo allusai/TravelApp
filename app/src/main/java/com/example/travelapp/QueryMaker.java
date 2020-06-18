@@ -12,7 +12,6 @@ import java.io.InputStreamReader;
 public class QueryMaker {
 
     private Context mContext;
-    String dbFile; // 13 rows,
     TouristLocation[] placesList;
     int numPlaces;
 
@@ -122,4 +121,49 @@ public class QueryMaker {
             placesList[pos].setSelected(true);
         }
     }
+
+    /* Useful for transferring placesList to a new activity*/
+    public String turnDataIntoSerializedString()
+    {
+        String result = "";
+
+        for(int i = 0; i < numPlaces; i++)
+        {
+            result += placesList[i].encodeToString();
+            if(i == 0)
+            {
+                placesList[i].checkEncoding();
+            }
+            if(i != numPlaces-1)
+            {
+                result += "~";
+            }
+        }
+
+        return result;
+    }
+
+    /* Useful when making a query maker from a second activity*/
+    public boolean loadPlacesListFromAString(String encodedString, Context c)
+    {
+        String[] objs = encodedString.split("~");
+
+        mContext = c;
+        numPlaces = 13;
+        placesList = new TouristLocation[numPlaces];
+
+        for(int i = 0; i < numPlaces; i++)
+        {
+            TouristLocation temp = new TouristLocation();
+            boolean decoded = temp.decodeFromString(objs[i]);
+            placesList[i] = temp;
+            if(decoded)
+            {
+                System.out.println("Successfully decoded TouristLocation!");
+            }
+        }
+
+        return true;
+    }
+
 }
