@@ -21,8 +21,8 @@ public class TouristLocation
         selected = s;
         rating = r;
         photoLinkStr = pls;
-        startHr = 0;
-        startMin = 0;
+        startHr = s1;
+        startMin = s2;
     }
 
 
@@ -78,4 +78,19 @@ public class TouristLocation
         this.startMin = startMin;
     }
 
+    @Override
+    public String toString() {
+        return "TouristLocation{" +
+                "name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", websiteLink='" + websiteLink + '\'' +
+                ", description='" + description + '\'' +
+                ", country='" + country + '\'' +
+                ", selected=" + selected +
+                ", rating=" + rating +
+                ", photoLinkStr='" + photoLinkStr + '\'' +
+                ", startHr=" + startHr +
+                ", startMin=" + startMin +
+                '}';
+    }
 }

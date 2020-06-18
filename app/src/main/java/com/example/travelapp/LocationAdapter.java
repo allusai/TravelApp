@@ -4,9 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyViewHolder> {
     private TouristLocation[] mDataset;
@@ -17,12 +20,14 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder {  // 1 (my custom holder)
         // each data item is just a string in this case
 
-        public TextView category; //jumble of views in this ViewHolder
+        public ImageView photo; //jumble of views in this ViewHolder
+        public TextView category;
         public TextView restaurantName;
         public ImageButton alarmButton;
 
         public MyViewHolder(View itemXML) {
             super(itemXML);
+            photo = (ImageView) itemXML.findViewById(R.id.photo);
             category = (TextView) itemXML.findViewById(R.id.category);
             restaurantName = (TextView) itemXML.findViewById(R.id.restaurantName);
             alarmButton = (ImageButton) itemXML.findViewById(R.id.alarmButton);
@@ -51,6 +56,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) { // bind data to a holder
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        String url = mDataset[position].getPhotoLinkStr(); //Restaurant item's photoLink
+        if (url.trim().length() == 0)
+        {
+            System.out.println("Missing photo link on item");
+            url = "https://codelabs.developers.google.com/codelabs/advanced-android-training-google-maps/img/3077e66f9f7a1a46.png";
+        }
+        Picasso.with(holder.photo.getContext()).load(url).placeholder(R.drawable.ic_baseline_place_24).into(holder.photo);
         holder.category.setText(mDataset[position].getCategory());
         holder.restaurantName.setText(mDataset[position].getName());  // 3 (let 'textView' = some string)
         //set alarm's picker default value for view here

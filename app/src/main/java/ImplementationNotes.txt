@@ -52,3 +52,5 @@ Note that the parameter is just "View v" and not "ImageButton v"
 1) Add the Vertical linear layout, Medium article can help
 2) Move the code over to the Home fragment
 3) Make the alarm functional, initialize default value in Adapter itself
+
+

@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private QueryMaker q;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         recyclerView.setLayoutManager(layoutManager);
 
         //Pre-fetch data for Paris   1
-        TouristLocation[] myDataset = QueryMaker.search("Paris");
+        q = new QueryMaker(this);
+        q.printMyData();
+        TouristLocation[] myDataset = q.search("Paris");
 
         // specify an adapter (see also next example)  2
         mAdapter = new LocationAdapter(myDataset);
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(parent.getContext(), newSelectedLocation, Toast.LENGTH_SHORT).show();
 
         //Fetch data for Paris
-        TouristLocation[] newDataset = QueryMaker.search(newSelectedLocation);
+        TouristLocation[] newDataset = q.search(newSelectedLocation);
 
         // specify an adapter (see also next example)
         mAdapter = new LocationAdapter(newDataset);
@@ -98,6 +101,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     /* Search: Called by default*/
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
+    }
+
+    /*Favorite: Called when favorite button is toggled */
+    public void toggleFavorite(View favorite)
+    {
+        Toast.makeText(getApplicationContext(), "Favorite", Toast.LENGTH_SHORT).show();
     }
 
     /* Alarm: Called when alarm is pressed */
