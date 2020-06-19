@@ -8,6 +8,7 @@
     <string name="search_button">Go</string>
     <string name="alarmContentDescription">This is an alarm button which launches a picker</string>
     <string name="schedule_button_text">Open Your Schedule</string>
+    <string name="second_activity_text">These are your favorite locations</string>
     <string-array name="cities">
         <item>Paris</item>
         <item>London</item>

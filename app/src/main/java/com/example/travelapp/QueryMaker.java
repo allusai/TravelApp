@@ -89,23 +89,33 @@ public class QueryMaker {
         }
 
         return results;
-        //Call database with 'location'
-        /*TouristLocation test = new TouristLocation("Cafe 81", "Restaurant", "", "", "Paris", false, 5, "", 5, 20);
-        TouristLocation sample = new TouristLocation("Cafe Bagel", "Restaurant", "", "", "Paris", false, 4, "", 6, 13);
-
-        if(location.equals("London"))
-        {
-            test = new TouristLocation("London Bridge Diner", "Coffee House", "", "", "London", false, 5, "https://static.standard.co.uk/s3fs-public/thumbnails/image/2019/01/10/09/amrutha-lounge-1001a.JPG", 5, 20);
-            sample = new TouristLocation("Buckingham Palace Restaurant", "Tourist Place", "", "", "London", false, 5, "", 5, 20);
-        }
-        else if(location.equals("Hyderabad"))
-        {
-            test = new TouristLocation("Biryani Kabob House", "Tourist Place", "", "", "Hyderabad", false, 5, "", 5, 20);
-            sample = new TouristLocation("Noodle House", "Restaurant", "", "", "Hyderabad", false, 5, "", 5, 20);
-        }
-
-        return new TouristLocation[]{test, sample}; */
     }
+
+    public TouristLocation[] getOnlySelectedLocations()
+    {
+        int matchCount = 0;
+        for(int i = 0; i < numPlaces; i++)
+        {
+            if(getSelectedStatus(i))
+            {
+                matchCount++;
+            }
+        }
+
+        TouristLocation[] results = new TouristLocation[matchCount];
+        int ptr = 0;
+        for(int i = 0; i < numPlaces; i++)
+        {
+            if(getSelectedStatus(i))
+            {
+                results[ptr] = placesList[i];
+                ptr++;
+            }
+        }
+
+        return results;
+    }
+
 
     public boolean getSelectedStatus(int pos) {
         return placesList[pos].isSelected();

@@ -1,12 +1,17 @@
 package com.example.travelapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class ViewScheduleActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
     private QueryMaker q;
 
     @Override
@@ -20,7 +25,9 @@ public class ViewScheduleActivity extends AppCompatActivity {
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
+        /*if(message != null) {
+            textView.setText(message.substring(0, 9)); // instead of the message/encoded string which was passed in
+        }*/
 
         //Now set up QueryMaker q and decode the message
         q = new QueryMaker(this);
@@ -33,5 +40,19 @@ public class ViewScheduleActivity extends AppCompatActivity {
             q.printMyData();
         }
 
+        //Recycler View setup
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new ScheduleAdapter(q.getOnlySelectedLocations(), q);
+        recyclerView.setAdapter(mAdapter);
     }
 }
