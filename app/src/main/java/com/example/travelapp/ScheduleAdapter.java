@@ -1,6 +1,8 @@
 package com.example.travelapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +72,35 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
         Picasso.with(holder.photo.getContext()).load(url).placeholder(R.drawable.ic_baseline_place_24).into(holder.photo);
         holder.category.setText(mDataset[position].getCategory());
         holder.restaurantName.setText(mDataset[position].getName());  // 3 (let 'textView' = some string)
+
+        //Set a linearLayout listener
+        final String link = mDataset[position].getWebsiteLink();
+        final String photoLink = mDataset[position].getPhotoLinkStr();
+        final Context ctx = holder.photo.getContext();
+        holder.photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(photoLink); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                ctx.startActivity(intent);
+            }
+        });
+        holder.category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(link); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                ctx.startActivity(intent);
+            }
+        });
+        holder.restaurantName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(link); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                ctx.startActivity(intent);
+            }
+        });
 
         String example = "5:30";
         holder.scheduledTime.setText(example);

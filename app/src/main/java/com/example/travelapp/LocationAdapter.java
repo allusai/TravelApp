@@ -1,6 +1,8 @@
 package com.example.travelapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +80,35 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
 
         //Fetch the value of star/selected out of the database!
         holder.favoriteButton.setChecked(qhelper.getSelectedStatus(position));
+
+        //Set a linearLayout listener
+        final String link = mDataset[position].getWebsiteLink();
+        final String photoLink = mDataset[position].getPhotoLinkStr();
+        final Context ctx = holder.photo.getContext();
+        holder.photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(photoLink); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                ctx.startActivity(intent);
+            }
+        });
+        holder.category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(link); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                ctx.startActivity(intent);
+            }
+        });
+        holder.restaurantName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(link); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                ctx.startActivity(intent);
+            }
+        });
 
         //Set a 'favorite button listener'
         final Context context = holder.photo.getContext();
