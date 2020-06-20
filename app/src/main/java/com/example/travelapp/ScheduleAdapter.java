@@ -69,6 +69,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
             System.out.println("Missing photo link on item");
             url = "https://codelabs.developers.google.com/codelabs/advanced-android-training-google-maps/img/3077e66f9f7a1a46.png";
         }
+
+        //Use Picasso to load the location's profile picture
         Picasso.with(holder.photo.getContext()).load(url).placeholder(R.drawable.ic_baseline_place_24).into(holder.photo);
         holder.category.setText(mDataset[position].getCategory());
         holder.restaurantName.setText(mDataset[position].getName());  // 3 (let 'textView' = some string)
@@ -77,6 +79,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
         final String link = mDataset[position].getWebsiteLink();
         final String photoLink = mDataset[position].getPhotoLinkStr();
         final Context ctx = holder.photo.getContext();
+
+        //Allow photo to be clickable, open the photo URL to show the full size photo
         holder.photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +89,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
                 ctx.startActivity(intent);
             }
         });
+
+        //Allow category to be clickable, open the restaurant website
         holder.category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +99,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
                 ctx.startActivity(intent);
             }
         });
+
+        //Allow restaurant name to be clickable, open the restaurant website
         holder.restaurantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,8 +110,25 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
             }
         });
 
-        String selectedTime = mDataset[position].getStartHr() + ":" + mDataset[position].getStartMin();
-        String example = "5:30";
+        int hr = mDataset[position].getStartHr();
+        String toAppend = " am"; //We should append either " am" or " pm" to the scheduled time
+        if(hr >= 12) {
+            toAppend = " pm";
+        }
+
+        //Check if past 12:00 pm
+        if(hr > 12) {
+            hr -= 12;
+        }
+        String selectedTime = hr + ":";
+        if(mDataset[position].getStartMin() < 10) {
+            selectedTime += "0";
+        }
+
+        selectedTime += mDataset[position].getStartMin();
+        selectedTime += toAppend;
+
+        String example = "5:30 pm";
         holder.scheduledTime.setText(selectedTime);
     }
 

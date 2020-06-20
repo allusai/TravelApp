@@ -25,9 +25,9 @@
             android:layout_height="match_parent"
             android:padding="1dp"
             android:text="Restaurant"
-            android:textColor="#000000"
+            android:textColor="#AD000000"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/restaurantName"
