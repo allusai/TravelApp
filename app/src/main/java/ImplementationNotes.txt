@@ -1,3 +1,31 @@
+Key Points:
+1) When debugging, rather than try 5 different approaches at once, try just one approach completely
+and if it doesn't work for a specific reason then try the next approach. For example, when I was
+trying to get the AWS database to work, I kind of made a Plan B, Plan C, and Plan D before I even
+tried the simplest version which was Plan A. That made it hard to advance the debugging efforts
+for any plan.
+2) In Android, each Activity (like MainActivity) has a wider range of tools available like
+getSupportFragmentManager or holding onto app-wide data like queryManager and the placesList.
+If we need to get those into somewhere like LocationAdapter, it's best to pass those through
+with the LocationAdapter constructor. Adapter and Fragment java files have a limited amount of
+libraries accessible to them and often you will have to make 'static' methods to help them access
+app-wide data but that's hard to get working, that's why passing via the constructor is better.
+3) Don't use XML onClick attribute, use the onClickListener, it allows for better compatibility
+with ViewHolders and Recycler Lists
+
+
+
+
+
+
+
+
+
+
+
+
+Notes While Developing:
+
 Alright, so based on how we want our view page to look, I thought that "multiple view holder"
 is the key but it's not! That's when you want a list view but have different types of holders
 like one for phone contacts and one for email contacts.

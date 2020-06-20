@@ -1,20 +1,30 @@
 package com.example.travelapp;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
 
 //To Fix: When the views are created, their 'selected' value must be fetched out of the
 //database, likewise with the alarm values for the 2nd activity.
@@ -22,6 +32,7 @@ import com.squareup.picasso.Picasso;
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyViewHolder> {
     private TouristLocation[] mDataset;
     private QueryMaker qhelper;
+    private FragmentManager myFM;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -46,9 +57,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public LocationAdapter(TouristLocation[] myDataset, QueryMaker q) {
+    public LocationAdapter(TouristLocation[] myDataset, QueryMaker q, FragmentManager f) {
         mDataset = myDataset;
         qhelper = q;
+        myFM = f;
     }
 
     // Create new views (invoked by the layout manager)
@@ -132,12 +144,50 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
             }
         });
 
-        //set alarm's picker default value for view here
+        //set alarm's listener here
+        final FragmentManager fragmentManager = myFM;
+        final int p = position;
+        holder.alarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Alarm", Toast.LENGTH_SHORT).show();
+                DialogFragment newFragment = new LocationAdapter.TimePickerFragment();
+                ((TimePickerFragment) newFragment).positionInList = p;
+                ((TimePickerFragment) newFragment).qHelper = qhelper;
+                newFragment.show(fragmentManager, "timePicker");
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.length;
+    }
+
+    public static class TimePickerFragment extends DialogFragment
+            implements TimePickerDialog.OnTimeSetListener {
+
+        public int positionInList;
+        public QueryMaker qHelper;
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current time as the default values for the picker
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            // Create a new instance of TimePickerDialog and return it
+            return new TimePickerDialog(getActivity(), this, hour, minute,
+                    DateFormat.is24HourFormat(getActivity()));
+        }
+
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            // Do something with the time chosen by the user
+            // Use the positionInList private variable to update queryMaker data
+            qHelper.updateSelectedTime(positionInList, hourOfDay, minute);
+            qHelper.printMyData();
+        }
     }
 }

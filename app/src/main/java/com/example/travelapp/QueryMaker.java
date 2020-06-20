@@ -176,4 +176,10 @@ public class QueryMaker {
         return true;
     }
 
+    public boolean updateSelectedTime(int pos, int startHr, int startMin)
+    {
+        placesList[pos].setStartHr(startHr);
+        placesList[pos].setStartMin(startMin);
+        return true;
+    }
 }

@@ -14,6 +14,8 @@ import android.widget.ToggleButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TouristLocation[] myDataset = q.search("Paris");
 
         // specify an adapter (see also next example)  2
-        mAdapter = new LocationAdapter(myDataset, q);
+        mAdapter = new LocationAdapter(myDataset, q, getSupportFragmentManager());
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TouristLocation[] newDataset = q.search(newSelectedLocation);
 
         // specify an adapter (see also next example)
-        mAdapter = new LocationAdapter(newDataset, q);
+        mAdapter = new LocationAdapter(newDataset, q, getSupportFragmentManager());
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -118,11 +120,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     } */
 
-    /* Alarm: Called when alarm is pressed */
+    /* Alarm: Called when alarm is pressed (for the onClick attribute, old version)
     public void showTimePickerDialog(View alarm)
     {
         Toast.makeText(getApplicationContext(), "Alarm", Toast.LENGTH_SHORT).show();
-    }
+        DialogFragment newFragment = new LocationAdapter.TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
+    } */
 
     /* Open Your Schedule: called when that activity button is pressed*/
     public void openSchedule(View view) {
@@ -133,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra(EXTRA_MESSAGE, message); //Forwards the text to the next activity via the intent's "extras" array, def. data type above
         startActivity(intent); //Launch the next activity!
     }
+
 }
 
 /*

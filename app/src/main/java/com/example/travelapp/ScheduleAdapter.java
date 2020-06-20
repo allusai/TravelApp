@@ -102,8 +102,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
             }
         });
 
+        String selectedTime = mDataset[position].getStartHr() + ":" + mDataset[position].getStartMin();
         String example = "5:30";
-        holder.scheduledTime.setText(example);
+        holder.scheduledTime.setText(selectedTime);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
