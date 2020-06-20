@@ -5,18 +5,18 @@ These are a few screenshots of what the app looks like right now.
 
 Screenshots
 -----------
-**This is the app's home page, you can select a city and view restaurants and tourist attractions there**
+**Figure 1. This is the app's home page, you can select a city and view restaurants and tourist attractions there**
 
 <img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppHomePage.png" alt="Home page of the app" width="476" height="854">  
 
-**You can scroll to view more locations**  
+**Figure 2. You can scroll to view more locations**  
 
 <img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppScrollingFeature.png" alt="Shows how the app can be scrolled through" width="476" height="854">  
 
-**You can "favorite" locations that you like, and put them on your schedule. Clicking the clock symbol allows you to schedule when you want to go to that place**  
+**Figure 3. You can "favorite" locations that you like, and put them on your schedule. Clicking the clock symbol allows you to schedule when you want to go to that place**  
 
 <img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppWishlistFeature.png" alt="You can click the favorite button on locations" width="476" height="854">  
 
-**You can view your schedule or itinerary as you are on your trip**  
+**Figure 4. You can view your schedule or itinerary as you are on your trip**  
   
 <img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppScheduleFeature.png" alt="You can design a schedule for your trip" width="476" height="854">  
