@@ -5,4 +5,9 @@ These are a few screenshots of what the app looks like right now.
 
 Screenshots
 -----------
+**This is the app's home page, you can select a city and view restaurants and tourist attractions there**
 
+<img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppHomePage.png" alt="Home page of the app" width="476" height="854">
+<img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppWishlistFeature.png" alt="You can click the favorite button on locations" width="476" height="854">
+<img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppScheduleFeature.png" alt="You can design a schedule for your trip" width="476" height="854">
+<img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppScrollingFeature.png" alt="Shows how the app can be scrolled through" width="476" height="854">
