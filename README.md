@@ -5,7 +5,4 @@ These are a few screenshots of what the app looks like right now.
 
 Screenshots
 -----------
-![Home page of the app](PhotoOfAppHomePage.png) 
-![Shows how the app can be scrolled through](PhotoOfAppScrollingFeature.png) 
-![You can click the favorite button on locations](PhotoOfAppWishlistFeature.png) 
-![You can design a schedule for your trip](PhotoOfAppScheduleFeature.png)
+
