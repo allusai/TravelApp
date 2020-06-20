@@ -3,7 +3,9 @@ TravelApp is an Android app which helps users plan their trip, discover new plac
 
 These are a few screenshots of what the app looks like right now.
 
-![alt text](https://github.com/allusai/TravelApp/blob/master/PhotoOfAppHomePage.png?raw=true)
-![alt text](https://github.com/allusai/TravelApp/blob/master/PhotoOfAppScrollingFeature.png?raw=true)
-![alt text](https://github.com/allusai/TravelApp/blob/master/PhotoOfAppWishlistFeature.png?raw=true)
-![alt text](https://github.com/allusai/TravelApp/blob/master/PhotoOfAppScheduleFeature.png?raw=true)
+Screenshots
+-----------
+![Home page of the app](PhotoOfAppHomePage.png) 
+![Shows how the app can be scrolled through](PhotoOfAppScrollingFeature.png) 
+![You can click the favorite button on locations](PhotoOfAppWishlistFeature.png) 
+![You can design a schedule for your trip](PhotoOfAppScheduleFeature.png)
