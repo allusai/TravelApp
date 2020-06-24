@@ -18,5 +18,3 @@ Screenshots
 <img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppWishlistFeature.png" alt="You can click the favorite button on locations" width="476" height="854">  
 
 **Figure 4. You can view your schedule or itinerary as you are on your trip**  
-  
-<img src="https://github.com/allusai/TravelApp/blob/master/PhotoOfAppScheduleFeature.png" alt="You can design a schedule for your trip" width="476" height="854">  
