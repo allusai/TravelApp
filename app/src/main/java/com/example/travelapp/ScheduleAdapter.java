@@ -209,8 +209,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
         }
         return false;
     }
-
-    //Geocoding API Key: "AIzaSyDLSCipODCcpB1MzEGeWsEuLJe4bJIiDvs"
+    
     //Reference: https://stackoverflow.com/questions/16271855/geocoder-api-for-java
     public List<String> getCoordinates(Context ctx, String address) throws IOException {
         Geocoder geocoder = new Geocoder(ctx, new Locale("en", "US"));
