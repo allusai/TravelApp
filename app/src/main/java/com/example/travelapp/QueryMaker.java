@@ -38,7 +38,7 @@ public class QueryMaker {
                 String[] tokens = line.split(",");
 
                 //Make a TouristLocation object with the right casting
-                TouristLocation newLoc = new TouristLocation(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], Boolean.parseBoolean(tokens[5]), Double.parseDouble(tokens[6]), tokens[7], Integer.parseInt(tokens[8]), Integer.parseInt(tokens[9]));
+                TouristLocation newLoc = new TouristLocation(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], Boolean.parseBoolean(tokens[5]), Double.parseDouble(tokens[6]), tokens[7], Integer.parseInt(tokens[8]), Integer.parseInt(tokens[9]), tokens[10]);
 
                 //Add this TouristLocation to the array
                 placesList[i] = newLoc;

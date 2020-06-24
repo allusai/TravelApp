@@ -10,13 +10,14 @@ public class TouristLocation
     private String photoLinkStr;
 
     private int startHr, startMin;
+    private String address;
 
     public TouristLocation()
     {
 
     }
 
-    public TouristLocation(String n, String c, String w, String d, String c2, boolean s, double r, String pls, int s1, int s2)
+    public TouristLocation(String n, String c, String w, String d, String c2, boolean s, double r, String pls, int s1, int s2, String a)
     {
         name = n;
         category = c;
@@ -28,6 +29,7 @@ public class TouristLocation
         photoLinkStr = pls;
         startHr = s1;
         startMin = s2;
+        address = a;
     }
 
 
@@ -137,4 +139,11 @@ public class TouristLocation
         return true;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
